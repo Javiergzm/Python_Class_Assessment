@@ -16,10 +16,15 @@ class Robot:
             return f"{self.name} charged by {amount}."
     
     def work(self, amount):
-        self.battery = self.battery - (int(amount) * 10)
-        self.durability = self.durability - (int(amount) * 5)
-        self.productivity = self.productivity + (int(amount) * 8)
-        return f"{self.name} worked for {amount} hours."
+        if self.battery < (int(amount) * 10):
+            print("Can not work at all")
+        else:
+            self.battery = self.battery - (int(amount) * 10)
+            self.durability = self.durability - (int(amount) * 5)
+            self.productivity = self.productivity + (int(amount) * 8)
+            if self.durability < 50:
+                print("Warning Durability is below 50, Try Repairing")
+            return f"{self.name} worked for {amount} hours."
 
     def repair(self):
         self.durability += 20
@@ -31,8 +36,8 @@ class Robot:
         return f"{self.name}| Color: {self.color}| Battery: {self.battery}| Durability: {self.durability} | Productivity: {self.productivity}"
 
 
-    def recolor(self, amount):
-        pass
+    #def recolor(self, amount):
+        #pass
 
 
 
